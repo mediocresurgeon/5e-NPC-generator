@@ -3,13 +3,13 @@
 
 namespace DungeonsAndDragons5e.UnitTests.AbilityScores
 {
-    public class AbilityScoresTest
+    public class AbilityScoresSectionTest
     {
         [Fact]
         public void Constructor_Strength_IsNotNull()
         {
             // Arrange
-            var scores = new DungeonsAndDragons5e.AbilityScores.AbilityScores();
+            var scores = new DungeonsAndDragons5e.AbilityScores.AbilityScoresSection();
 
             // Act
 
@@ -22,7 +22,7 @@ namespace DungeonsAndDragons5e.UnitTests.AbilityScores
         public void Constructor_Dexterity_IsNotNull()
         {
             // Arrange
-            var scores = new DungeonsAndDragons5e.AbilityScores.AbilityScores();
+            var scores = new DungeonsAndDragons5e.AbilityScores.AbilityScoresSection();
 
             // Act
 
@@ -35,7 +35,7 @@ namespace DungeonsAndDragons5e.UnitTests.AbilityScores
         public void Constructor_Constitution_IsNotNull()
         {
             // Arrange
-            var scores = new DungeonsAndDragons5e.AbilityScores.AbilityScores();
+            var scores = new DungeonsAndDragons5e.AbilityScores.AbilityScoresSection();
 
             // Act
 
@@ -48,7 +48,7 @@ namespace DungeonsAndDragons5e.UnitTests.AbilityScores
         public void Constructor_Intelligence_IsNotNull()
         {
             // Arrange
-            var scores = new DungeonsAndDragons5e.AbilityScores.AbilityScores();
+            var scores = new DungeonsAndDragons5e.AbilityScores.AbilityScoresSection();
 
             // Act
 
@@ -61,7 +61,7 @@ namespace DungeonsAndDragons5e.UnitTests.AbilityScores
         public void Constructor_Wisdom_IsNotNull()
         {
             // Arrange
-            var scores = new DungeonsAndDragons5e.AbilityScores.AbilityScores();
+            var scores = new DungeonsAndDragons5e.AbilityScores.AbilityScoresSection();
 
             // Act
 
@@ -74,7 +74,7 @@ namespace DungeonsAndDragons5e.UnitTests.AbilityScores
         public void Constructor_Charisma_IsNotNull()
         {
             // Arrange
-            var scores = new DungeonsAndDragons5e.AbilityScores.AbilityScores();
+            var scores = new DungeonsAndDragons5e.AbilityScores.AbilityScoresSection();
 
             // Act
 

@@ -1,6 +1,6 @@
 ﻿namespace DungeonsAndDragons5e.AbilityScores
 {
-    internal sealed class AbilityScores : IAbilityScores
+    internal sealed class AbilityScoresSection : IAbilityScoresSection
     {
         public IAbilityScore Strength     { get; } = new AbilityScore();
 

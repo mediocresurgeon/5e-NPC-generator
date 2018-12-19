@@ -1,10 +1,16 @@
-﻿using Xunit;
-
+﻿using DungeonsAndDragons5e.AbilityScores;
+using DungeonsAndDragons5e.AbilityChecks.Skills;
+using Xunit;
+using DungeonsAndDragons5e.AbilityChecks;
 
 namespace DungeonsAndDragons5e.UnitTests
 {
     public class CharacterTest
     {
+        #region Constructor tests
+        /// <summary>
+        /// Ensures that a fresh instance of Character has a non-null AbilityScores property.
+        /// </summary>
         [Fact]
         public void Constructor_AbilityScores_IsNotNull()
         {
@@ -14,7 +20,35 @@ namespace DungeonsAndDragons5e.UnitTests
             // Act
 
             // Assert
-            Assert.IsType<DungeonsAndDragons5e.AbilityScores.AbilityScores>(character.AbilityScores);
+            Assert.IsType<AbilityScoresSection>(character.AbilityScores);
         }
+
+
+        [Fact]
+        public void Constructor_Skills_IsNotNull()
+        {
+            // Arrange
+            var character = new Character();
+
+            // Act
+
+            // Assert
+            Assert.IsType<SkillsSection>(character.Skills);
+        }
+
+
+        [Fact]
+        public void Constructor_Initiative_DefaultConfiguration()
+        {
+            // Arrange
+            var character = new Character();
+
+            // Act
+
+            // Assert
+            Assert.IsType<AbilityCheck>(character.Initiative);
+            Assert.Same(character.AbilityScores.Dexterity, character.Initiative.AbilityScore);
+        }
+        #endregion
     }
 }

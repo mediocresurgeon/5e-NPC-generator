@@ -20,8 +20,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Class1.cs" />
+    <Compile Remove="Bonuses\BonusTracker.cs" />
+    <Compile Remove="Skills\ISkill.cs" />
+    <Compile Remove="Skills\Skill.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AbilityScores\" />
+    <Folder Include="AbilityChecks\" />
+    <Folder Include="AbilityChecks\Skills\" />
   </ItemGroup>
 </Project>

@@ -3,7 +3,7 @@
     /// <summary>
     /// A set of basic attributes which represent a character's raw talent and prowess.
     /// </summary>
-    public interface IAbilityScores
+    public interface IAbilityScoresSection
     {
         /// <summary>
         /// Muscle and physical power.
