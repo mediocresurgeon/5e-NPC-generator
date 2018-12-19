@@ -25,4 +25,7 @@
   <ItemGroup>
     <Compile Remove="UnitTest1.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AbilityScores\" />
+  </ItemGroup>
 </Project>
