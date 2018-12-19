@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonsAndDragons5e", "DungeonsAndDragons5e\DungeonsAndDragons5e.csproj", "{D1F53E6B-8DF3-4EA7-8F18-3ABD13CF8ADC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonsAndDragons5e.UnitTests", "DungeonsAndDragons5e.UnitTests\DungeonsAndDragons5e.UnitTests.csproj", "{60366462-1495-4A3F-A367-71CEBD34C613}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1F53E6B-8DF3-4EA7-8F18-3ABD13CF8ADC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1F53E6B-8DF3-4EA7-8F18-3ABD13CF8ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1F53E6B-8DF3-4EA7-8F18-3ABD13CF8ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1F53E6B-8DF3-4EA7-8F18-3ABD13CF8ADC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60366462-1495-4A3F-A367-71CEBD34C613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60366462-1495-4A3F-A367-71CEBD34C613}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60366462-1495-4A3F-A367-71CEBD34C613}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60366462-1495-4A3F-A367-71CEBD34C613}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
