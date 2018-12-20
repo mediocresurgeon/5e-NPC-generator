@@ -1,7 +1,9 @@
-﻿using DungeonsAndDragons5e.AbilityScores;
+﻿using DungeonsAndDragons5e.AbilityChecks;
 using DungeonsAndDragons5e.AbilityChecks.Skills;
+using DungeonsAndDragons5e.AbilityScores;
+using DungeonsAndDragons5e.SavingThrows;
 using Xunit;
-using DungeonsAndDragons5e.AbilityChecks;
+
 
 namespace DungeonsAndDragons5e.UnitTests
 {
@@ -21,6 +23,19 @@ namespace DungeonsAndDragons5e.UnitTests
 
             // Assert
             Assert.IsType<AbilityScoresSection>(character.AbilityScores);
+        }
+
+
+        [Fact]
+        public void Constructor_SavingThrows_IsNotNull()
+        {
+            // Arrange
+            var character = new Character();
+
+            // Act
+
+            // Assert
+            Assert.IsType<SavingThrowsSection>(character.SavingThrows);
         }
 
 

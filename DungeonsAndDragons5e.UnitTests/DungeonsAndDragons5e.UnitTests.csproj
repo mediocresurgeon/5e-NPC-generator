@@ -30,5 +30,6 @@
     <Folder Include="AbilityScores\" />
     <Folder Include="AbilityChecks\" />
     <Folder Include="AbilityChecks\Skills\" />
+    <Folder Include="SavingThrows\" />
   </ItemGroup>
 </Project>

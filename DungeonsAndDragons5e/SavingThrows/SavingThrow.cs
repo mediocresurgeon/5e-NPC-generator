@@ -4,20 +4,25 @@ using System.Linq;
 using DungeonsAndDragons5e.AbilityScores;
 
 
-namespace DungeonsAndDragons5e.AbilityChecks
+namespace DungeonsAndDragons5e.SavingThrows
 {
-    internal class AbilityCheck : IAbilityCheck
+    internal sealed class SavingThrow : ISavingThrow
     {
         #region Constructor
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:DungeonsAndDragons5e.AbilityChecks.AbilityCheck"/> class.
+        /// Initializes a new instance of the <see cref="T:DungeonsAndDragons5e.SavingThrows.SavingThrow"/> class.
         /// </summary>
-        /// <param name="abilityScore">The ability score associated with this ability check.</param>
+        /// <param name="abilityScore">The ability score associated with this saving throw.</param>
+        /// <param name="proficiencyBonus">The character's proficiency bonus.</param>
         /// <exception cref="System.ArgumentNullException" />
-        public AbilityCheck(IAbilityScore abilityScore)
+        public SavingThrow(IAbilityScore abilityScore, Func<byte> proficiencyBonus)
         {
-            this.AbilityScore = abilityScore ?? throw new ArgumentNullException(nameof(abilityScore), "Argument may not be null.");
-            this.Modifiers.Add(() => this.AbilityScore.Modifer);
+            if (null == abilityScore)
+                throw new ArgumentNullException(nameof(abilityScore), "Argument may not be null.");
+            if (null == proficiencyBonus)
+                throw new ArgumentNullException(nameof(proficiencyBonus), "Argument may not be null.");
+            this.AddModifier(() => abilityScore.Modifer);
+            this.AddModifier(() => this.IsProficient ? Convert.ToSByte(proficiencyBonus()) : (sbyte)0);
         }
         #endregion
 
@@ -28,9 +33,9 @@ namespace DungeonsAndDragons5e.AbilityChecks
         private List<Func<sbyte>> Modifiers { get; } = new List<Func<sbyte>>();
 
         /// <summary>
-        /// The ability score associated with this ability check.
+        /// Indicates whether or not the character is proficient in this saving throw.
         /// </summary>
-        public IAbilityScore AbilityScore { get; }
+        public bool IsProficient { get; set; }
         #endregion
 
         #region Methods
@@ -39,18 +44,19 @@ namespace DungeonsAndDragons5e.AbilityChecks
         /// </summary>
         /// <param name="modifier">The modifier to add.</param>
         /// <exception cref="System.ArgumentNullException" />
-        public virtual void AddModifier(Func<sbyte> modifier)
+        public void AddModifier(Func<sbyte> modifier)
         {
             if (null == modifier)
                 throw new ArgumentNullException(nameof(modifier), "Argument may not be null.");
             this.Modifiers.Add(modifier);
         }
 
+
         /// <summary>
         /// Gets the total modifier for this ability check.
         /// </summary>
         /// <returns>The total.</returns>
-        public virtual sbyte GetTotal()
+        public sbyte GetTotal()
         {
             return Convert.ToSByte(this.Modifiers.Select(f => Convert.ToDouble(f()))
                                                  .Sum());

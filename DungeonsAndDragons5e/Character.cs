@@ -1,7 +1,7 @@
 ﻿using DungeonsAndDragons5e.AbilityScores;
 using DungeonsAndDragons5e.AbilityChecks.Skills;
 using DungeonsAndDragons5e.AbilityChecks;
-
+using DungeonsAndDragons5e.SavingThrows;
 
 namespace DungeonsAndDragons5e
 {
@@ -16,8 +16,12 @@ namespace DungeonsAndDragons5e
         /// </summary>
         public Character()
         {
-            this.Initiative = new AbilityCheck(this.AbilityScores.Dexterity);
-            this.Skills     = new SkillsSection(this.AbilityScores, () => this.ProficiencyBonus);
+            // local function so we don't have to define multiple anon functions
+            byte getProf() => this.ProficiencyBonus;
+
+            this.SavingThrows = new SavingThrowsSection(this.AbilityScores, getProf);
+            this.Initiative   = new AbilityCheck(this.AbilityScores.Dexterity);
+            this.Skills       = new SkillsSection(this.AbilityScores, getProf);
         }
         #endregion
 
@@ -31,6 +35,11 @@ namespace DungeonsAndDragons5e
         /// A set of stats which represent this character's raw talent and prowess.
         /// </summary>
         public IAbilityScoresSection AbilityScores { get; } = new AbilityScoresSection();
+
+        /// <summary>
+        /// A set of stats which indicate how resistant this character is to harmful effects.
+        /// </summary>
+        public ISavingThrowsSection SavingThrows { get; }
 
         /// <summary>
         /// An ability check which determines the order in which this character acts in combat.

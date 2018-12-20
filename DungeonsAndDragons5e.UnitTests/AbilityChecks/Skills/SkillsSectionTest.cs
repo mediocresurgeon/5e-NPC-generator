@@ -28,7 +28,6 @@ namespace DungeonsAndDragons5e.UnitTests.AbilityChecks.Skills
             mockAbilityScoreSection.Setup(s => s.Charisma)
                                    .Returns(Mock.Of<IAbilityScore>());
             this.AbilityScores = mockAbilityScoreSection.Object;
-
         }
 
         private IAbilityScoresSection AbilityScores { get; }
@@ -84,9 +83,6 @@ namespace DungeonsAndDragons5e.UnitTests.AbilityChecks.Skills
             Assert.IsType<Skill>(skillsSection.Stealth);
             Assert.Same(this.AbilityScores.Dexterity, skillsSection.Stealth.AbilityScore);
         }
-        #endregion
-
-        #region Constitution skills
         #endregion
 
         #region Intelligence skills
