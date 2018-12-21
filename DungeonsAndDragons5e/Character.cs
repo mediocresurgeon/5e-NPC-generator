@@ -3,6 +3,7 @@ using DungeonsAndDragons5e.AbilityChecks.Skills;
 using DungeonsAndDragons5e.AbilityChecks;
 using DungeonsAndDragons5e.SavingThrows;
 
+
 namespace DungeonsAndDragons5e
 {
     /// <summary>
@@ -22,6 +23,7 @@ namespace DungeonsAndDragons5e
             this.SavingThrows = new SavingThrowsSection(this.AbilityScores, getProf);
             this.Initiative   = new AbilityCheck(this.AbilityScores.Dexterity);
             this.Skills       = new SkillsSection(this.AbilityScores, getProf);
+            this.ArmorClass   = new ArmorClass(this.AbilityScores.Dexterity);
         }
         #endregion
 
@@ -50,6 +52,11 @@ namespace DungeonsAndDragons5e
         /// A set of specialized ability checks.
         /// </summary>
         public ISkillsSection Skills { get; }
+
+        /// <summary>
+        /// A measurement of how difficult this character is to hit.
+        /// </summary>
+        public IArmorClass ArmorClass { get; }
         #endregion
     }
 }

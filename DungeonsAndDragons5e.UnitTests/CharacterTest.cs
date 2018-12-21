@@ -27,6 +27,19 @@ namespace DungeonsAndDragons5e.UnitTests
 
 
         [Fact]
+        public void Constructor_ArmorClass_IsNotNull()
+        {
+            // Arrange
+            var character = new Character();
+
+            // Act
+
+            // Assert
+            Assert.IsType<ArmorClass>(character.ArmorClass);
+        }
+
+
+        [Fact]
         public void Constructor_SavingThrows_IsNotNull()
         {
             // Arrange

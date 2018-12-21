@@ -35,5 +35,10 @@ namespace DungeonsAndDragons5e
         /// A set of specialized ability checks.
         /// </summary>
         ISkillsSection Skills { get; }
+
+        /// <summary>
+        /// Returns this character's armor class.
+        /// </summary>
+        IArmorClass ArmorClass { get; }
     }
 }
