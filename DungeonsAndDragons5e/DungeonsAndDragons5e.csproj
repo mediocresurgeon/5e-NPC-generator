@@ -29,5 +29,6 @@
     <Folder Include="AbilityChecks\" />
     <Folder Include="AbilityChecks\Skills\" />
     <Folder Include="SavingThrows\" />
+    <Folder Include="Dice\" />
   </ItemGroup>
 </Project>
