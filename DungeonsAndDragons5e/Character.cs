@@ -20,10 +20,11 @@ namespace DungeonsAndDragons5e
             // local function so we don't have to define multiple anon functions
             byte getProf() => this.ProficiencyBonus;
 
+            this.HitPoints = new HitDice(this.AbilityScores.Constitution);
             this.SavingThrows = new SavingThrowsSection(this.AbilityScores, getProf);
-            this.Initiative   = new AbilityCheck(this.AbilityScores.Dexterity);
-            this.Skills       = new SkillsSection(this.AbilityScores, getProf);
-            this.ArmorClass   = new ArmorClass(this.AbilityScores.Dexterity);
+            this.Initiative = new AbilityCheck(this.AbilityScores.Dexterity);
+            this.Skills = new SkillsSection(this.AbilityScores, getProf);
+            this.ArmorClass = new ArmorClass(this.AbilityScores.Dexterity);
         }
         #endregion
 
@@ -37,6 +38,11 @@ namespace DungeonsAndDragons5e
         /// A set of stats which represent this character's raw talent and prowess.
         /// </summary>
         public IAbilityScoresSection AbilityScores { get; } = new AbilityScoresSection();
+
+        /// <summary>
+        /// The durability of this character.
+        /// </summary>
+        public IHitDice HitPoints { get; }
 
         /// <summary>
         /// A set of stats which indicate how resistant this character is to harmful effects.

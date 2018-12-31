@@ -10,9 +10,6 @@ namespace DungeonsAndDragons5e.UnitTests
     public class CharacterTest
     {
         #region Constructor tests
-        /// <summary>
-        /// Ensures that a fresh instance of Character has a non-null AbilityScores property.
-        /// </summary>
         [Fact]
         public void Constructor_AbilityScores_IsNotNull()
         {
@@ -23,6 +20,19 @@ namespace DungeonsAndDragons5e.UnitTests
 
             // Assert
             Assert.IsType<AbilityScoresSection>(character.AbilityScores);
+        }
+
+
+        [Fact]
+        public void Constructor_HitPoints_IsNotNull()
+        {
+            // Arrange
+            var character = new Character();
+
+            // Act
+
+            // Assert
+            Assert.IsType<HitDice>(character.HitPoints);
         }
 
 

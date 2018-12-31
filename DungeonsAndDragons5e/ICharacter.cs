@@ -22,6 +22,11 @@ namespace DungeonsAndDragons5e
         IAbilityScoresSection AbilityScores { get; }
 
         /// <summary>
+        /// Represents the durability of this character.
+        /// </summary>
+        IHitDice HitPoints { get; }
+
+        /// <summary>
         /// This character's ability to resist harmful effects.
         /// </summary>
         ISavingThrowsSection SavingThrows { get; }

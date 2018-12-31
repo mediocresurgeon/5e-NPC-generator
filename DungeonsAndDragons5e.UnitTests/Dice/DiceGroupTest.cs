@@ -87,34 +87,6 @@ namespace DungeonsAndDragons5e.UnitTests.Dice
         }
 
 
-        [Fact]
-        public void EqualityMethod_SameObject()
-        {
-            // Arrange
-            var dg = new DiceGroup(1, 6);
-
-            // Act
-            var equal = dg.Equals(dg);
-
-            // Assert
-            Assert.True(equal);
-        }
-
-
-        [Fact]
-        public void EqualityOperator_SameObject()
-        {
-            // Arrange
-            var dg = new DiceGroup(1, 6);
-
-            // Act
-            var equal = dg == dg;
-
-            // Assert
-            Assert.True(equal);
-        }
-
-
         [Theory]
         [InlineData(1, 6)]
         [InlineData(2, 8)]
@@ -144,20 +116,6 @@ namespace DungeonsAndDragons5e.UnitTests.Dice
 
             // Assert
             Assert.True(equal);
-        }
-
-
-        [Fact]
-        public void InequalityOperator_SameObject()
-        {
-            // Arrange
-            var dg = new DiceGroup(1, 6);
-
-            // Act
-            var equal = dg != dg;
-
-            // Assert
-            Assert.False(equal);
         }
 
 
