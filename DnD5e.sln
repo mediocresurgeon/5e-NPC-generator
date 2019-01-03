@@ -1,0 +1,43 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnD5e.Creatures", "DnD5e.Creatures\DnD5e.Creatures.csproj", "{D1F53E6B-8DF3-4EA7-8F18-3ABD13CF8ADC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnD5e.Creatures.UnitTests", "DnD5e.Creatures.UnitTests\DnD5e.Creatures.UnitTests.csproj", "{60366462-1495-4A3F-A367-71CEBD34C613}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1F53E6B-8DF3-4EA7-8F18-3ABD13CF8ADC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1F53E6B-8DF3-4EA7-8F18-3ABD13CF8ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1F53E6B-8DF3-4EA7-8F18-3ABD13CF8ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1F53E6B-8DF3-4EA7-8F18-3ABD13CF8ADC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60366462-1495-4A3F-A367-71CEBD34C613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60366462-1495-4A3F-A367-71CEBD34C613}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60366462-1495-4A3F-A367-71CEBD34C613}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60366462-1495-4A3F-A367-71CEBD34C613}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		BaseDirectory = ../DnD5e
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
+		$0.TextStylePolicy = $2
+		$2.inheritsSet = null
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.NewLinesForBracesInAnonymousMethods = False
+		$3.NewLinesForBracesInAnonymousTypes = False
+		$3.NewLinesForBracesInObjectCollectionArrayInitializers = False
+		$3.NewLinesForBracesInLambdaExpressionBody = False
+		$3.scope = text/x-csharp
+		$0.TextStylePolicy = $4
+		$4.FileWidth = 80
+		$4.TabsToSpaces = True
+		$4.scope = text/plain
+		$0.VersionControlPolicy = $5
+	EndGlobalSection
+EndGlobal

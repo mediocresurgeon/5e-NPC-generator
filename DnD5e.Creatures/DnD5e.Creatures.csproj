@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>  
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>    
+    <AssemblyName>DnD5e</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\DnD5e\DnD5e.Creatures\bin\Debug\netstandard2.0</OutputPath>
+    <DocumentationFile>..\DnD5e.Creatures\bin\Debug\netstandard2.0\DnD5e.xml</DocumentationFile>
+    <LangVersion>Latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>Latest</LangVersion>
+    <OutputPath>..\..\DnD5e\DnD5e.Creatures\bin\Release\netstandard2.0</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+    <Compile Remove="Bonuses\BonusTracker.cs" />
+    <Compile Remove="Skills\ISkill.cs" />
+    <Compile Remove="Skills\Skill.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AbilityScores\" />
+    <Folder Include="AbilityChecks\" />
+    <Folder Include="AbilityChecks\Skills\" />
+    <Folder Include="SavingThrows\" />
+    <Folder Include="Dice\" />
+  </ItemGroup>
+</Project>
