@@ -8,15 +8,15 @@ using DungeonsAndDragons5e.SavingThrows;
 namespace DungeonsAndDragons5e
 {
     /// <summary>
-    /// A personality, such as an NPC.
+    /// An entity which can take actions in combat, such as a monster or an NPC.
     /// </summary>
-    public sealed class Character : ICharacter
+    public sealed class Creature : ICreature
     {
         #region Constructor
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:DungeonsAndDragons5e.Character"/> class.
+        /// Initializes a new instance of the <see cref="T:DungeonsAndDragons5e.Creature"/> class.
         /// </summary>
-        public Character()
+        public Creature()
         {
             this.ArmorClass = new ArmorClass(this.AbilityScores.Dexterity);
             this.HitPoints  = new HitDice(this.AbilityScores.Constitution);

@@ -8,9 +8,9 @@ using DungeonsAndDragons5e.SavingThrows;
 namespace DungeonsAndDragons5e
 {
     /// <summary>
-    /// A personality, such as an NPC.
+    /// An entity which can take actions in combat, such as a monster or an NPC.
     /// </summary>
-    public interface ICharacter
+    public interface ICreature
     {
         /// <summary>
         /// A set of stats which represent this character's raw talent and prowess.

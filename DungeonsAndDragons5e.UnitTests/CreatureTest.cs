@@ -9,14 +9,14 @@ using Xunit;
 
 namespace DungeonsAndDragons5e.UnitTests
 {
-    public class CharacterTest
+    public class CreatureTest
     {
         #region Constructor tests
         [Fact]
         public void Constructor_AbilityScores_IsNotNull()
         {
             // Arrange
-            var character = new Character();
+            var character = new Creature();
 
             // Act
 
@@ -29,7 +29,7 @@ namespace DungeonsAndDragons5e.UnitTests
         public void Constructor_ArmorClass_IsNotNull()
         {
             // Arrange
-            var character = new Character();
+            var character = new Creature();
 
             // Act
 
@@ -42,7 +42,7 @@ namespace DungeonsAndDragons5e.UnitTests
         public void Constructor_HitPoints_IsNotNull()
         {
             // Arrange
-            var character = new Character();
+            var character = new Creature();
 
             // Act
 
@@ -55,7 +55,7 @@ namespace DungeonsAndDragons5e.UnitTests
         public void Constructor_Initiative_DefaultConfiguration()
         {
             // Arrange
-            var character = new Character();
+            var character = new Creature();
 
             // Act
 
@@ -69,7 +69,7 @@ namespace DungeonsAndDragons5e.UnitTests
         public void Constructor_GetProficiencyBonus_IsNotNull()
         {
             // Arrange
-            var character = new Character();
+            var character = new Creature();
 
             // Act
 
@@ -82,7 +82,7 @@ namespace DungeonsAndDragons5e.UnitTests
         public void Constructor_SavingThrows_IsNotNull()
         {
             // Arrange
-            var character = new Character();
+            var character = new Creature();
 
             // Act
 
@@ -95,7 +95,7 @@ namespace DungeonsAndDragons5e.UnitTests
         public void Constructor_Skills_IsNotNull()
         {
             // Arrange
-            var character = new Character();
+            var character = new Creature();
 
             // Act
 
@@ -126,7 +126,7 @@ namespace DungeonsAndDragons5e.UnitTests
             // Arrange
 
             // Act
-            var result = Character.GetProficiencyBonusFromLevel(level);
+            var result = Creature.GetProficiencyBonusFromLevel(level);
 
             // Assert
             Assert.Equal(expected, result);
@@ -152,7 +152,7 @@ namespace DungeonsAndDragons5e.UnitTests
         public void GetProficiencyBonus(byte level, byte expected)
         {
             // Arrange
-            var character = new Character();
+            var character = new Creature();
 
             var hd = new Mock<IDiceGroup>();
             hd.Setup(d => d.Quantity)
