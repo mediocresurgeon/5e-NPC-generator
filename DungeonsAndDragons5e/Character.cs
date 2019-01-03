@@ -1,6 +1,7 @@
-﻿using DungeonsAndDragons5e.AbilityScores;
-using DungeonsAndDragons5e.AbilityChecks.Skills;
+﻿using System;
 using DungeonsAndDragons5e.AbilityChecks;
+using DungeonsAndDragons5e.AbilityChecks.Skills;
+using DungeonsAndDragons5e.AbilityScores;
 using DungeonsAndDragons5e.SavingThrows;
 
 
@@ -17,27 +18,26 @@ namespace DungeonsAndDragons5e
         /// </summary>
         public Character()
         {
-            // local function so we don't have to define multiple anon functions
-            byte getProf() => this.ProficiencyBonus;
-
-            this.HitPoints = new HitDice(this.AbilityScores.Constitution);
-            this.SavingThrows = new SavingThrowsSection(this.AbilityScores, getProf);
-            this.Initiative = new AbilityCheck(this.AbilityScores.Dexterity);
-            this.Skills = new SkillsSection(this.AbilityScores, getProf);
             this.ArmorClass = new ArmorClass(this.AbilityScores.Dexterity);
+            this.HitPoints  = new HitDice(this.AbilityScores.Constitution);
+            this.Initiative = new AbilityCheck(this.AbilityScores.Dexterity);
+
+            this.GetProficiencyBonus = () => GetProficiencyBonusFromLevel(this.HitPoints.HitDiceCount);
+            this.SavingThrows        = new SavingThrowsSection(this.AbilityScores, () => this.GetProficiencyBonus());
+            this.Skills              = new SkillsSection(this.AbilityScores, () => this.GetProficiencyBonus());
         }
         #endregion
 
         #region Properties
         /// <summary>
-        /// This character's proficiency bonus.
-        /// </summary>
-        public byte ProficiencyBonus { get; set; } = 2;
-
-        /// <summary>
         /// A set of stats which represent this character's raw talent and prowess.
         /// </summary>
         public IAbilityScoresSection AbilityScores { get; } = new AbilityScoresSection();
+
+        /// <summary>
+        /// A measurement of how difficult this character is to hit.
+        /// </summary>
+        public IArmorClass ArmorClass { get; }
 
         /// <summary>
         /// The durability of this character.
@@ -45,24 +45,36 @@ namespace DungeonsAndDragons5e
         public IHitDice HitPoints { get; }
 
         /// <summary>
-        /// A set of stats which indicate how resistant this character is to harmful effects.
-        /// </summary>
-        public ISavingThrowsSection SavingThrows { get; }
-
-        /// <summary>
         /// An ability check which determines the order in which this character acts in combat.
         /// </summary>
         public IAbilityCheck Initiative { get; }
 
         /// <summary>
+        /// Calculates this character's proficiency bonus.
+        /// </summary>
+        public Func<byte> GetProficiencyBonus { get; set; }
+
+        /// <summary>
+        /// A set of stats which indicate how resistant this character is to harmful effects.
+        /// </summary>
+        public ISavingThrowsSection SavingThrows { get; }
+
+        /// <summary>
         /// A set of specialized ability checks.
         /// </summary>
         public ISkillsSection Skills { get; }
+        #endregion
 
+        #region Methods
         /// <summary>
-        /// A measurement of how difficult this character is to hit.
+        /// Given a level, determines the proficiency bonus.
         /// </summary>
-        public IArmorClass ArmorClass { get; }
+        /// <param name="level">The character's level.</param>
+        /// <returns>The proficiency bonus.</returns>
+        internal static byte GetProficiencyBonusFromLevel(byte level)
+        {
+            return Convert.ToByte(((level - 1) / 4) + 2);
+        }
         #endregion
     }
 }
