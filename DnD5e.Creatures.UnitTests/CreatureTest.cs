@@ -1,7 +1,9 @@
-﻿using DnD5e.Creatures.AbilityChecks;
+﻿using System;
+using DnD5e.Creatures.AbilityChecks;
 using DnD5e.Creatures.AbilityChecks.Skills;
 using DnD5e.Creatures.AbilityScores;
 using DnD5e.Creatures.Dice;
+using DnD5e.Creatures.Items;
 using DnD5e.Creatures.SavingThrows;
 using Moq;
 using Xunit;
@@ -134,13 +136,13 @@ namespace DnD5e.Creatures.UnitTests
 
 
         [Theory]
-        [InlineData(0, 2)]
-        [InlineData(1, 2)]
-        [InlineData(4, 2)]
-        [InlineData(5, 3)]
-        [InlineData(6, 3)]
-        [InlineData(8, 3)]
-        [InlineData(9, 4)]
+        [InlineData( 0, 2)]
+        [InlineData( 1, 2)]
+        [InlineData( 4, 2)]
+        [InlineData( 5, 3)]
+        [InlineData( 6, 3)]
+        [InlineData( 8, 3)]
+        [InlineData( 9, 4)]
         [InlineData(10, 4)]
         [InlineData(12, 4)]
         [InlineData(13, 5)]
@@ -167,6 +169,44 @@ namespace DnD5e.Creatures.UnitTests
 
             // Assert
             Assert.Equal(expected, result);
+        }
+        #endregion
+
+        #region Items
+        [Fact]
+        public void Equip_NullArg_Throws()
+        {
+            // Arrange
+            var character = new Creature();
+            IItem item = null;
+
+            // Act
+            Action equip = () => character.Equip(item);
+
+            // Act
+            Assert.Throws<ArgumentNullException>(equip);
+        }
+
+
+        [Fact]
+        public void EquipItem_RoundTrip()
+        {
+            // Arrange
+            var character = new Creature();
+
+            var mockItem = new Mock<IItem>();
+            var applyableItem = mockItem.As<IApplyable>();
+
+            var item = applyableItem.Object as IItem;
+
+            // Act
+            character.Equip(item);
+
+            // Assert
+            // Make sure the equipped item is returned
+            Assert.Contains(item, character.GetItems());
+            // Make sure the ApplyTo method is called on the item
+            applyableItem.Verify(i => i.ApplyTo(It.Is<ICreature>(c => character == c)));
         }
         #endregion
     }

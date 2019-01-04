@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using DnD5e.Creatures.AbilityChecks;
 using DnD5e.Creatures.AbilityChecks.Skills;
 using DnD5e.Creatures.AbilityScores;
+using DnD5e.Creatures.Items;
 using DnD5e.Creatures.SavingThrows;
 
 
@@ -63,6 +65,11 @@ namespace DnD5e.Creatures
         /// A set of specialized ability checks.
         /// </summary>
         public ISkillsSection Skills { get; }
+
+        /// <summary>
+        /// The collection of items which belong to this character.
+        /// </summary>
+        private List<IItem> Items { get; } = new List<IItem>();
         #endregion
 
         #region Methods
@@ -74,6 +81,39 @@ namespace DnD5e.Creatures
         internal static byte GetProficiencyBonusFromLevel(byte level)
         {
             return Convert.ToByte(((level - 1) / 4) + 2);
+        }
+
+
+        /// <summary>
+        /// Equips an item to this ICreature.
+        /// </summary>
+        /// <param name="item">The item to equip.</param>
+        /// <exception cref="System.ArgumentNullException" />
+        public void Equip(IItem item)
+        {
+            if (null == item)
+                throw new ArgumentNullException(nameof(item), "Argument may not be null.");
+
+            if (!this.Items.Contains(item)) // Prevent double-equipping an item
+            {
+                this.Items.Add(item);
+
+                // If the item has effects that should be applied to this creature, do so.
+                if (item is IApplyable)
+                {
+                    ((IApplyable)item).ApplyTo(this);
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Returns the items which are currently equipped to this creature.
+        /// </summary>
+        /// <returns>The items.</returns>
+        public IEnumerable<IItem> GetItems()
+        {
+            return this.Items.ToArray();
         }
         #endregion
     }

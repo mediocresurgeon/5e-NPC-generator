@@ -33,5 +33,14 @@
     <Folder Include="AbilityChecks\Skills\" />
     <Folder Include="SavingThrows\" />
     <Folder Include="Dice\" />
+    <Folder Include="Items\" />
+    <Folder Include="Items\MundaneItems\" />
+    <Folder Include="Items\WonderousItems\" />
+    <Folder Include="Items\Weapons\" />
+    <Folder Include="Items\Armors\" />
+    <Folder Include="Items\Armors\Core\" />
+    <Folder Include="Items\Armors\Core\PaddedArmors\" />
+    <Folder Include="Items\Armors\Core\HideArmors\" />
+    <Folder Include="Items\Armors\Core\RingMails\" />
   </ItemGroup>
 </Project>

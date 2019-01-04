@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using DnD5e.Creatures.AbilityChecks;
 using DnD5e.Creatures.AbilityChecks.Skills;
 using DnD5e.Creatures.AbilityScores;
+using DnD5e.Creatures.Items;
 using DnD5e.Creatures.SavingThrows;
 
 
@@ -12,6 +14,7 @@ namespace DnD5e.Creatures
     /// </summary>
     public interface ICreature
     {
+        #region Properies
         /// <summary>
         /// A set of stats which represent this character's raw talent and prowess.
         /// </summary>
@@ -46,5 +49,20 @@ namespace DnD5e.Creatures
         /// A set of specialized ability checks.
         /// </summary>
         ISkillsSection Skills { get; }
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Equips an item to this ICreature.
+        /// </summary>
+        /// <param name="item">The item to equip.</param>
+        void Equip(IItem item);
+
+        /// <summary>
+        /// Returns the items which are currently equipped to this ICreature.
+        /// </summary>
+        /// <returns>The items.</returns>
+        IEnumerable<IItem> GetItems();
+        #endregion
     }
 }
