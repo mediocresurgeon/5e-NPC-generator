@@ -56,7 +56,6 @@ namespace DnD5e.Creatures.Items.Armors
             if (null == creature)
                 throw new ArgumentNullException(nameof(creature), "Argument may not be null.");
             creature.ArmorClass.AddBase(() => this.BaseArmorValue);
-            // TODO: Put this item in the creature's armor slot
         }
         #endregion
     }

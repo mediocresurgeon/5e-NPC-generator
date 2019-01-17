@@ -1,5 +1,4 @@
-﻿using System;
-using DnD5e.Creatures.AbilityChecks;
+﻿using DnD5e.Creatures.AbilityChecks;
 using DnD5e.Creatures.AbilityChecks.Skills;
 using DnD5e.Creatures.AbilityScores;
 using DnD5e.Creatures.Dice;
@@ -104,6 +103,19 @@ namespace DnD5e.Creatures.UnitTests
             // Assert
             Assert.IsType<SkillsSection>(character.Skills);
         }
+
+
+        [Fact]
+        public void Constructor_Equipment_IsNotNull()
+        {
+            // Arrange
+            var character = new Creature();
+
+            // Act
+
+            // Assert
+            Assert.IsType<EquipmentSection>(character.Equipment);
+        }
         #endregion
 
         #region Proficiency bonus
@@ -169,44 +181,6 @@ namespace DnD5e.Creatures.UnitTests
 
             // Assert
             Assert.Equal(expected, result);
-        }
-        #endregion
-
-        #region Items
-        [Fact]
-        public void Equip_NullArg_Throws()
-        {
-            // Arrange
-            var character = new Creature();
-            IItem item = null;
-
-            // Act
-            Action equip = () => character.Equip(item);
-
-            // Act
-            Assert.Throws<ArgumentNullException>(equip);
-        }
-
-
-        [Fact]
-        public void EquipItem_RoundTrip()
-        {
-            // Arrange
-            var character = new Creature();
-
-            var mockItem = new Mock<IItem>();
-            var applyableItem = mockItem.As<IApplyable>();
-
-            var item = applyableItem.Object as IItem;
-
-            // Act
-            character.Equip(item);
-
-            // Assert
-            // Make sure the equipped item is returned
-            Assert.Contains(item, character.GetItems());
-            // Make sure the ApplyTo method is called on the item
-            applyableItem.Verify(i => i.ApplyTo(It.Is<ICreature>(c => character == c)));
         }
         #endregion
     }

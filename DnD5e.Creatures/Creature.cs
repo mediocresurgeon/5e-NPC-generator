@@ -21,12 +21,14 @@ namespace DnD5e.Creatures
         public Creature()
         {
             this.ArmorClass = new ArmorClass(this.AbilityScores.Dexterity);
-            this.HitPoints  = new HitDice(this.AbilityScores.Constitution);
+            this.HitPoints = new HitDice(this.AbilityScores.Constitution);
             this.Initiative = new AbilityCheck(this.AbilityScores.Dexterity);
 
             this.GetProficiencyBonus = () => GetProficiencyBonusFromLevel(this.HitPoints.HitDiceCount);
-            this.SavingThrows        = new SavingThrowsSection(this.AbilityScores, () => this.GetProficiencyBonus());
-            this.Skills              = new SkillsSection(this.AbilityScores, () => this.GetProficiencyBonus());
+            this.SavingThrows = new SavingThrowsSection(this.AbilityScores, () => this.GetProficiencyBonus());
+            this.Skills = new SkillsSection(this.AbilityScores, () => this.GetProficiencyBonus());
+
+            this.Equipment = new EquipmentSection(this);
         }
         #endregion
 
@@ -67,9 +69,9 @@ namespace DnD5e.Creatures
         public ISkillsSection Skills { get; }
 
         /// <summary>
-        /// The collection of items which belong to this character.
+        /// Returns this creature's equipment.
         /// </summary>
-        private List<IItem> Items { get; } = new List<IItem>();
+        public IEquipmentSection Equipment { get; }
         #endregion
 
         #region Methods
@@ -81,39 +83,6 @@ namespace DnD5e.Creatures
         internal static byte GetProficiencyBonusFromLevel(byte level)
         {
             return Convert.ToByte(((level - 1) / 4) + 2);
-        }
-
-
-        /// <summary>
-        /// Equips an item to this ICreature.
-        /// </summary>
-        /// <param name="item">The item to equip.</param>
-        /// <exception cref="System.ArgumentNullException" />
-        public void Equip(IItem item)
-        {
-            if (null == item)
-                throw new ArgumentNullException(nameof(item), "Argument may not be null.");
-
-            if (!this.Items.Contains(item)) // Prevent double-equipping an item
-            {
-                this.Items.Add(item);
-
-                // If the item has effects that should be applied to this creature, do so.
-                if (item is IApplyable)
-                {
-                    ((IApplyable)item).ApplyTo(this);
-                }
-            }
-        }
-
-
-        /// <summary>
-        /// Returns the items which are currently equipped to this creature.
-        /// </summary>
-        /// <returns>The items.</returns>
-        public IEnumerable<IItem> GetItems()
-        {
-            return this.Items.ToArray();
         }
         #endregion
     }

@@ -49,20 +49,11 @@ namespace DnD5e.Creatures
         /// A set of specialized ability checks.
         /// </summary>
         ISkillsSection Skills { get; }
-        #endregion
-
-        #region Methods
-        /// <summary>
-        /// Equips an item to this ICreature.
-        /// </summary>
-        /// <param name="item">The item to equip.</param>
-        void Equip(IItem item);
 
         /// <summary>
-        /// Returns the items which are currently equipped to this ICreature.
+        /// Returns this creature's equipment.
         /// </summary>
-        /// <returns>The items.</returns>
-        IEnumerable<IItem> GetItems();
+        IEquipmentSection Equipment { get; }
         #endregion
     }
 }
