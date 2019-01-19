@@ -1,5 +1,5 @@
 ﻿using DnD5e.Creatures.Items.Armors;
-
+using DnD5e.Creatures.Items.WonderousItems;
 
 namespace DnD5e.Creatures.Items
 {
@@ -20,5 +20,17 @@ namespace DnD5e.Creatures.Items
         /// </summary>
         /// <param name="armor">The armor to equip.</param>
         void Equip(IArmor armor);
+
+
+        /// <summary>
+        /// Returns this creature's wonderous items.
+        /// </summary>
+        IWonderousItem[] GetWonderousItems();
+
+        /// <summary>
+        /// Equips a wonderous item to this creature.
+        /// </summary>
+        /// <param name="wonderousItem">The wonderous item to equip.</param>
+        void Equip(IWonderousItem wonderousItem);
     }
 }

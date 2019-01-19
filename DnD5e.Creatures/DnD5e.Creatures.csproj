@@ -42,5 +42,6 @@
     <Folder Include="Items\Armors\Core\PaddedArmors\" />
     <Folder Include="Items\Armors\Core\HideArmors\" />
     <Folder Include="Items\Armors\Core\RingMails\" />
+    <Folder Include="Items\WonderousItems\Core\" />
   </ItemGroup>
 </Project>

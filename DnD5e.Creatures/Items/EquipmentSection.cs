@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using DnD5e.Creatures.Items.Armors;
-
+using DnD5e.Creatures.Items.WonderousItems;
 
 namespace DnD5e.Creatures.Items
 {
@@ -26,8 +27,12 @@ namespace DnD5e.Creatures.Items
         /// <summary>
         /// The owner of this equipment.
         /// </summary>
-        /// <value>The equipment owner.</value>
         private ICreature Owner { get; }
+
+        /// <summary>
+        /// This creature's wonderous items.
+        /// </summary>
+        private List<IWonderousItem> WonderousItems { get; } = new List<IWonderousItem>();
 
         /// <summary>
         /// Returns the equipped armor.
@@ -61,6 +66,34 @@ namespace DnD5e.Creatures.Items
             // Happy path
             _armor = armor;
             this.Armor.ApplyTo(this.Owner);
+        }
+
+        /// <summary>
+        /// Returns this creature's wonderous items.
+        /// </summary>
+        public IWonderousItem[] GetWonderousItems()
+        {
+            return this.WonderousItems.ToArray();
+        }
+
+        /// <summary>
+        /// Equips a wonderous item to this creature.
+        /// </summary>
+        /// <param name="wonderousItem">The wonderous item to equip.</param>
+        /// <exception cref="System.ArgumentNullException" />
+        public void Equip(IWonderousItem wonderousItem)
+        {
+            // Arg should not be null
+            if (null == wonderousItem)
+                throw new ArgumentNullException(nameof(wonderousItem), "Argument may not be null.");
+
+            // Redundant adds should be ignored
+            if (this.WonderousItems.Contains(wonderousItem))
+                return;
+
+            // Happy path
+            this.WonderousItems.Add(wonderousItem);
+            (wonderousItem as IApplyable)?.ApplyTo(this.Owner);
         }
         #endregion
     }
