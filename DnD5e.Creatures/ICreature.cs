@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using DnD5e.Creatures.AbilityChecks;
 using DnD5e.Creatures.AbilityChecks.Skills;
 using DnD5e.Creatures.AbilityScores;
+using DnD5e.Creatures.Attacks;
 using DnD5e.Creatures.Items;
 using DnD5e.Creatures.SavingThrows;
 
@@ -54,6 +54,20 @@ namespace DnD5e.Creatures
         /// Returns this creature's equipment.
         /// </summary>
         IEquipmentSection Equipment { get; }
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Returns this creature's attacks.
+        /// </summary>
+        IAttackBlock[] GetAttacks();
+
+        /// <summary>
+        /// Registers a weapon (such as a claw, unarmed strike, or longsword)
+        /// so that this creature can attack with it.
+        /// </summary>
+        /// <param name="weapon">The weapon to register.</param>
+        void AddAttack(IWeapon weapon);
         #endregion
     }
 }

@@ -6,7 +6,7 @@ namespace DnD5e.Creatures.Items.Armors.Core.HideArmors
     /// <summary>
     /// Crude armor consisting of thick furs pelts.
     /// </summary>
-    public sealed class HideArmor : MediumArmor, IHideArmor
+    public class HideArmor : MediumArmor, IHideArmor
     {
         #region Properties
         /// <summary>

@@ -43,5 +43,10 @@
     <Folder Include="Items\Armors\Core\HideArmors\" />
     <Folder Include="Items\Armors\Core\RingMails\" />
     <Folder Include="Items\WonderousItems\Core\" />
+    <Folder Include="Attacks\" />
+    <Folder Include="Items\Weapons\Core\" />
+    <Folder Include="Items\Weapons\Core\Daggers\" />
+    <Folder Include="Items\Weapons\Core\Mauls\" />
+    <Folder Include="Items\Weapons\Core\Longbows\" />
   </ItemGroup>
 </Project>

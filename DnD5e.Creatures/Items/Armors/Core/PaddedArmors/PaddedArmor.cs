@@ -6,7 +6,7 @@ namespace DnD5e.Creatures.Items.Armors.Core.PaddedArmors
     /// <summary>
     /// Quilted layers of cloth and clothing, such as a gambeson.
     /// </summary>
-    public sealed class PaddedArmor : Armor, IPaddedArmor
+    public class PaddedArmor : Armor, IPaddedArmor
     {
         #region Properties
         /// <summary>

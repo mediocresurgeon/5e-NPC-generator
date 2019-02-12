@@ -22,6 +22,8 @@
 
   <ItemGroup>
     <Compile Remove="UnitTest1.cs" />
+    <Compile Remove="Items\Armors\Core\HideArmors\HideArmorPlusOneTest.cs" />
+    <Compile Remove="Items\Armors\Core\RingMails\RingMailPlusOneTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AbilityScores\" />
@@ -37,6 +39,12 @@
     <Folder Include="Items\Armors\Core\RingMails\" />
     <Folder Include="Items\WonderousItems\" />
     <Folder Include="Items\WonderousItems\Core\" />
+    <Folder Include="Attacks\" />
+    <Folder Include="Items\Weapons\" />
+    <Folder Include="Items\Weapons\Core\" />
+    <Folder Include="Items\Weapons\Core\Daggers\" />
+    <Folder Include="Items\Weapons\Core\Longbows\" />
+    <Folder Include="Items\Weapons\Core\Mauls\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DnD5e.Creatures\DnD5e.Creatures.csproj" />

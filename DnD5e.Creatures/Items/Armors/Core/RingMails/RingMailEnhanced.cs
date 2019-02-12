@@ -4,20 +4,43 @@
 namespace DnD5e.Creatures.Items.Armors.Core.RingMails
 {
     /// <summary>
-    /// Enchanted leather armor with heavy rings sewn into it.
+    /// Ring mail with an enhancement bonus.
     /// </summary>
-    public sealed class RingMailPlusOne : HeavyArmor, IRingMail, IEnchantedItem
+    public sealed class RingMailEnhanced : RingMail, IEnchantedItem
     {
+        #region Constructor
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:DnD5e.Creatures.Items.Armors.Core.RingMails.RingMailEnhanced"/> class.
+        /// </summary>
+        /// <param name="enhancementBonus">The enhancement bonus.  Should be no less than 1 and no greater than 3.</param>
+        /// <exception cref="System.ArgumentOutOfRangeException" />
+        public RingMailEnhanced(byte enhancementBonus)
+        {
+            if (1 > enhancementBonus || 3 < enhancementBonus)
+                throw new ArgumentOutOfRangeException(nameof(enhancementBonus), enhancementBonus, "1 <= Enhancement bonus <= 3");
+            this.EnhancementBonus = enhancementBonus;
+            this.Rarity = EnhancementEnchantment.GetRarity(this.EnhancementBonus);
+        }
+        #endregion
+
         #region Properties
+        private byte EnhancementBonus { get; }
+
+        /// <summary>
+        /// The rarity of this item.
+        /// </summary>
+        public Rarity Rarity { get; }
+
         /// <summary>
         /// The base armor class to bestow upon the creature wearing this armor.
         /// </summary>
-        public override byte BaseArmorValue => 15;
+        public override byte BaseArmorValue => Convert.ToByte(base.BaseArmorValue + this.EnhancementBonus);
 
         /// <summary>
         /// The name of this armor.
         /// </summary>
-        public override string Name => "+1 Ring Mail";
+        public override string Name => $"+{ this.EnhancementBonus } { base.Name }";
 
         /// <summary>
         /// The sourcebook which published the stats for this armor.
@@ -38,16 +61,6 @@ namespace DnD5e.Creatures.Items.Armors.Core.RingMails
         /// The market value of this armor (in gold pieces).
         /// </summary>
         public override decimal? MarketValue => null;
-
-        /// <summary>
-        /// The weight of this armor (in pounds).
-        /// </summary>
-        public override float Weight => 40;
-
-        /// <summary>
-        /// The rarity of this item.
-        /// </summary>
-        public Rarity Rarity => Rarity.Rare;
 
         /// <summary>
         /// Indicates whether or not this item requires attunement in order to function at full capacity.

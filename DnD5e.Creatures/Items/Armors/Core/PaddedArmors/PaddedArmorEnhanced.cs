@@ -4,20 +4,43 @@
 namespace DnD5e.Creatures.Items.Armors.Core.PaddedArmors
 {
     /// <summary>
-    /// Enchanted quilted layers of cloth and clothing, such as a gambeson.
+    /// Padded armor with an enhancement bonus.
     /// </summary>
-    public sealed class PaddedArmorPlusThree : Armor, IPaddedArmor, IEnchantedItem
+    public sealed class PaddedArmorEnhanced : PaddedArmor, IEnchantedItem
     {
+        #region Constructor
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="T:DnD5e.Creatures.Items.Armors.Core.PaddedArmors.PaddedArmorEnhanced"/> class.
+        /// </summary>
+        /// <param name="enhancementBonus">The enhancement bonus.  Should be no less than 1 and no greater than 3.</param>
+        /// <exception cref="System.ArgumentOutOfRangeException" />
+        public PaddedArmorEnhanced(byte enhancementBonus)
+        {
+            if (1 > enhancementBonus || 3 < enhancementBonus)
+                throw new ArgumentOutOfRangeException(nameof(enhancementBonus), enhancementBonus, "1 <= Enhancement bonus <= 3");
+            this.EnhancementBonus = enhancementBonus;
+            this.Rarity = EnhancementEnchantment.GetRarity(this.EnhancementBonus);
+        }
+        #endregion
+
         #region Properties
+        private byte EnhancementBonus { get; }
+
+        /// <summary>
+        /// The rarity of this item.
+        /// </summary>
+        public Rarity Rarity { get; }
+
         /// <summary>
         /// The base armor class to bestow upon the creature wearing this armor.
         /// </summary>
-        public override byte BaseArmorValue => 14;
+        public override byte BaseArmorValue => Convert.ToByte(base.BaseArmorValue + this.EnhancementBonus);
 
         /// <summary>
         /// The name of this armor.
         /// </summary>
-        public override string Name => "+3 Padded Armor";
+        public override string Name => $"+{ this.EnhancementBonus } { base.Name }";
 
         /// <summary>
         /// The sourcebook which published the stats for this armor.
@@ -38,16 +61,6 @@ namespace DnD5e.Creatures.Items.Armors.Core.PaddedArmors
         /// The market value of this armor (in gold pieces).
         /// </summary>
         public override decimal? MarketValue => null;
-
-        /// <summary>
-        /// The weight of this armor (in pounds).
-        /// </summary>
-        public override float Weight => 8;
-
-        /// <summary>
-        /// The rarity of this item.
-        /// </summary>
-        public Rarity Rarity => Rarity.Legendary;
 
         /// <summary>
         /// Indicates whether or not this item requires attunement in order to function at full capacity.

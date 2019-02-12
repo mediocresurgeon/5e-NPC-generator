@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using DnD5e.Creatures.Items.Armors;
+using DnD5e.Creatures.Items.Weapons;
 using DnD5e.Creatures.Items.WonderousItems;
+
 
 namespace DnD5e.Creatures.Items
 {
@@ -33,6 +35,11 @@ namespace DnD5e.Creatures.Items
         /// This creature's wonderous items.
         /// </summary>
         private List<IWonderousItem> WonderousItems { get; } = new List<IWonderousItem>();
+
+        /// <summary>
+        /// This creature's weapons.
+        /// </summary>
+        private List<IManufacturedWeapon> Weapons { get; } = new List<IManufacturedWeapon>();
 
         /// <summary>
         /// Returns the equipped armor.
@@ -68,6 +75,7 @@ namespace DnD5e.Creatures.Items
             this.Armor.ApplyTo(this.Owner);
         }
 
+
         /// <summary>
         /// Returns this creature's wonderous items.
         /// </summary>
@@ -75,6 +83,17 @@ namespace DnD5e.Creatures.Items
         {
             return this.WonderousItems.ToArray();
         }
+
+
+        /// <summary>
+        /// Returns this creature's weapons.
+        /// </summary>
+        /// <returns>The weapons.</returns>
+        public IManufacturedWeapon[] GetWeapons()
+        {
+            return this.Weapons.ToArray();
+        }
+
 
         /// <summary>
         /// Equips a wonderous item to this creature.
@@ -94,6 +113,28 @@ namespace DnD5e.Creatures.Items
             // Happy path
             this.WonderousItems.Add(wonderousItem);
             (wonderousItem as IApplyable)?.ApplyTo(this.Owner);
+        }
+
+
+        /// <summary>
+        /// Equips a weapon to this creature.
+        /// </summary>
+        /// <param name="weapon">The weapon to equip.</param>
+        /// <exception cref="System.ArgumentNullException" />
+        public void Equip(IManufacturedWeapon weapon)
+        {
+            // Arg should not be null
+            if (null == weapon)
+                throw new ArgumentNullException(nameof(weapon), "Argument may not be null.");
+
+            // Redundant adds should be ignored
+            if (this.Weapons.Contains(weapon))
+                return;
+
+            // Happy path
+            this.Weapons.Add(weapon);
+            this.Owner.AddAttack(weapon);
+            (weapon as IApplyable)?.ApplyTo(this.Owner);
         }
         #endregion
     }

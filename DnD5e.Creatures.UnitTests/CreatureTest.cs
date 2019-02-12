@@ -1,6 +1,9 @@
-﻿using DnD5e.Creatures.AbilityChecks;
+﻿using System;
+using System.Linq;
+using DnD5e.Creatures.AbilityChecks;
 using DnD5e.Creatures.AbilityChecks.Skills;
 using DnD5e.Creatures.AbilityScores;
+using DnD5e.Creatures.Attacks;
 using DnD5e.Creatures.Dice;
 using DnD5e.Creatures.Items;
 using DnD5e.Creatures.SavingThrows;
@@ -181,6 +184,53 @@ namespace DnD5e.Creatures.UnitTests
 
             // Assert
             Assert.Equal(expected, result);
+        }
+        #endregion
+
+        #region Attacks
+        [Fact]
+        public void AddAttack_NullArg_Throws()
+        {
+            // Arrange
+            var character = new Creature();
+            IWeapon weapon = null;
+
+            // Act
+            Action addAttack = () => character.AddAttack(weapon);
+
+            // Assert
+            Assert.Throws<ArgumentNullException>(addAttack);
+        }
+
+
+        [Fact]
+        public void AddAttack_Weapon_MakesRoundTrip()
+        {
+            // Arrange
+            var character = new Creature();
+            var weapon = Mock.Of<IWeapon>();
+
+            // Act
+            character.AddAttack(weapon);
+
+            // Assert
+            Assert.Contains(weapon, character.GetAttacks().Select(ab => ab.Weapon));
+        }
+
+
+        [Fact]
+        public void AddAttack_Weapon_MultipleCallsIgnored()
+        {
+            // Arrange
+            var character = new Creature();
+            var weapon = Mock.Of<IWeapon>();
+
+            // Act
+            character.AddAttack(weapon);
+            character.AddAttack(weapon);
+
+            // Assert
+            Assert.Single(character.GetAttacks());
         }
         #endregion
     }

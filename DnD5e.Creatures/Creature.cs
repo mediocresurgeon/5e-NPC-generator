@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DnD5e.Creatures.AbilityChecks;
 using DnD5e.Creatures.AbilityChecks.Skills;
 using DnD5e.Creatures.AbilityScores;
+using DnD5e.Creatures.Attacks;
 using DnD5e.Creatures.Items;
 using DnD5e.Creatures.SavingThrows;
 
@@ -33,6 +35,11 @@ namespace DnD5e.Creatures
         #endregion
 
         #region Properties
+        /// <summary>
+        /// This creature's attacks.
+        /// </summary>
+        private List<IAttackBlock> Attacks { get; } = new List<IAttackBlock>();
+
         /// <summary>
         /// A set of stats which represent this character's raw talent and prowess.
         /// </summary>
@@ -83,6 +90,38 @@ namespace DnD5e.Creatures
         internal static byte GetProficiencyBonusFromLevel(byte level)
         {
             return Convert.ToByte(((level - 1) / 4) + 2);
+        }
+
+
+        /// <summary>
+        /// Returns a copy of this creature's attacks.
+        /// </summary>
+        public IAttackBlock[] GetAttacks()
+        {
+            return this.Attacks.ToArray();
+        }
+
+
+        /// <summary>
+        /// Registers a weapon (such as a claw, unarmed strike, or longsword)
+        /// so the creature can attack with it.
+        /// </summary>
+        /// <param name="weapon">The weapon to register for attacks.</param>
+        /// <exception cref="System.ArgumentNullException" />
+        public void AddAttack(IWeapon weapon)
+        {
+            // Reject null arguments
+            if (null == weapon)
+                throw new ArgumentNullException(nameof(weapon), "Argument may not be null.");
+            // Ignore redundant adds
+            if (this.Attacks.Any(atk => weapon == atk.Weapon))
+                return;
+
+            var attackBlock = new AttackBlock(this.AbilityScores.Strength,
+                                              this.AbilityScores.Dexterity,
+                                              () => this.GetProficiencyBonus(),
+                                              weapon);
+            this.Attacks.Add(attackBlock);
         }
         #endregion
     }

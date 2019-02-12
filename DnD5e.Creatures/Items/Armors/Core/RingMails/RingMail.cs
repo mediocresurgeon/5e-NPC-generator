@@ -6,7 +6,7 @@ namespace DnD5e.Creatures.Items.Armors.Core.RingMails
     /// <summary>
     /// Leather armor with heavy rings sewn into it.
     /// </summary>
-    public sealed class RingMail : HeavyArmor, IRingMail
+    public class RingMail : HeavyArmor, IRingMail
     {
         #region Properties
         /// <summary>
