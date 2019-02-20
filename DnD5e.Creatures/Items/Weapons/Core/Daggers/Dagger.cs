@@ -18,7 +18,7 @@ namespace DnD5e.Creatures.Items.Weapons.Core.Daggers
         /// <summary>
         /// The sourcebook which published the stats for this weapon.
         /// </summary>
-        public virtual string SourceBook => "Player's Handbook";
+        public virtual string SourceBook => Book.PlayersHandbook;
 
         /// <summary>
         /// The number of the page on which the stats for this weapon can be found.

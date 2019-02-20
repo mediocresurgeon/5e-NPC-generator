@@ -26,7 +26,7 @@ namespace DnD5e.Creatures.Items.WonderousItems.Core
         /// <summary>
         /// Bag of Holding was first printed in the Dungeon Master's Guide.
         /// </summary>
-        public string SourceBook => "Dungeon Master's Guide";
+        public string SourceBook => Book.DungeonMastersGuide;
 
         /// <summary>
         /// Bag of Holding can be found on page 150 in the DMG.

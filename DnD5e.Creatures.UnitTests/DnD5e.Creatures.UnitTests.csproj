@@ -45,6 +45,7 @@
     <Folder Include="Items\Weapons\Core\Daggers\" />
     <Folder Include="Items\Weapons\Core\Longbows\" />
     <Folder Include="Items\Weapons\Core\Mauls\" />
+    <Folder Include="Items\MundaneItems\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DnD5e.Creatures\DnD5e.Creatures.csproj" />

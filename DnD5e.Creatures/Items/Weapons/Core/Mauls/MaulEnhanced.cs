@@ -39,7 +39,7 @@ namespace DnD5e.Creatures.Items.Weapons.Core.Mauls
         /// <summary>
         /// The sourcebook which published the stats for this armor.
         /// </summary>
-        public override string SourceBook => "Dungeon Master's Guide";
+        public override string SourceBook => Book.DungeonMastersGuide;
 
         /// <summary>
         /// The number of the page on which the stats for this armor can be found.

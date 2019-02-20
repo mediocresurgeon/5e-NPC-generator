@@ -22,7 +22,7 @@ namespace DnD5e.Creatures.Items.Armors.Core.PaddedArmors
         /// <summary>
         /// The sourcebook which published the stats for this armor.
         /// </summary>
-        public override string SourceBook => "Player's Handbook";
+        public override string SourceBook => Book.PlayersHandbook;
 
         /// <summary>
         /// The number of the page on which the stats for this armor can be found.

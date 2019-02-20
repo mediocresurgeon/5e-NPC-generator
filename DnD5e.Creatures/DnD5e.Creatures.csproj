@@ -48,5 +48,7 @@
     <Folder Include="Items\Weapons\Core\Daggers\" />
     <Folder Include="Items\Weapons\Core\Mauls\" />
     <Folder Include="Items\Weapons\Core\Longbows\" />
+    <Folder Include="Spells\" />
+    <Folder Include="Spells\Core\" />
   </ItemGroup>
 </Project>
