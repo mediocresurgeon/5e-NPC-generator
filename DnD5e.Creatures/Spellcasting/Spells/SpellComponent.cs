@@ -1,4 +1,4 @@
-﻿namespace DnD5e.Creatures.Spells
+﻿namespace DnD5e.Creatures.Spellcasting.Spells
 {
     /// <summary>
     /// A physical requirement which must be met in order to cast a spell.

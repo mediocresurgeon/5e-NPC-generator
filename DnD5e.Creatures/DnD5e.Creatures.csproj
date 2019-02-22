@@ -34,7 +34,6 @@
     <Folder Include="SavingThrows\" />
     <Folder Include="Dice\" />
     <Folder Include="Items\" />
-    <Folder Include="Items\MundaneItems\" />
     <Folder Include="Items\WonderousItems\" />
     <Folder Include="Items\Weapons\" />
     <Folder Include="Items\Armors\" />
@@ -48,7 +47,7 @@
     <Folder Include="Items\Weapons\Core\Daggers\" />
     <Folder Include="Items\Weapons\Core\Mauls\" />
     <Folder Include="Items\Weapons\Core\Longbows\" />
-    <Folder Include="Spells\" />
-    <Folder Include="Spells\Core\" />
+    <Folder Include="Spellcasting\" />
+    <Folder Include="Spellcasting\Spells\" />
   </ItemGroup>
 </Project>

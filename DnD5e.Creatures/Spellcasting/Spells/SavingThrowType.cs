@@ -1,4 +1,4 @@
-﻿namespace DnD5e.Creatures.Spells
+﻿namespace DnD5e.Creatures.Spellcasting.Spells
 {
     /// <summary>
     /// The type of saving throw allowed by creatures affected by a spell.

@@ -1,4 +1,4 @@
-﻿namespace DnD5e.Creatures.Spells
+﻿namespace DnD5e.Creatures.Spellcasting.Spells
 {
     /// <summary>
     /// A school of magic.

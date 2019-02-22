@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace DnD5e.Creatures.Spells.Core
+namespace DnD5e.Creatures.Spellcasting.Spells.Core
 {
     /// <summary>
     /// The signature spell of the Warlock class.

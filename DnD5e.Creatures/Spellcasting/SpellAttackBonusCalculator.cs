@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using DnD5e.Creatures.AbilityScores;
+using DnD5e.Creatures.Attacks;
 
 
-namespace DnD5e.Creatures.Attacks
+namespace DnD5e.Creatures.Spellcasting
 {
-    internal sealed class AttackBonusCalculator : IAttackBonusCalculator
+    /// <summary>
+    /// Calculates the attack bonus of a spell.
+    /// </summary>
+    internal sealed class SpellAttackBonusCalculator : IAttackBonusCalculator
     {
         #region Fields
         private sbyte? _totalAttackBonus;
@@ -14,24 +18,28 @@ namespace DnD5e.Creatures.Attacks
 
         #region Constructor
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:DnD5e.Creatures.Attacks.AttackBonusCalculator"/> class.
+        /// Initializes a new instance of the <see cref="T:DnD5e.Creatures.Spellcasting.SpellAttackBonusCalculator"/> class.
         /// </summary>
         /// <param name="proficiencyBonus">The creature's proficiency bonus.</param>
-        /// <param name="getKeyAbilityScore">The ability score which should be used when dynamically calculating this attack bonus.</param>
-        public AttackBonusCalculator(Func<byte> proficiencyBonus, Func<IAbilityScore> getKeyAbilityScore)
+        /// <param name="spellcastingStat">The creature's abiltiy score which is associated with spellcasting.</param>
+        /// <exception cref="System.ArgumentNullException" />
+        public SpellAttackBonusCalculator(Func<byte> proficiencyBonus, IAbilityScore spellcastingStat)
         {
             this.ProficiencyBonus = proficiencyBonus ?? throw new ArgumentNullException(nameof(proficiencyBonus), "Argument may not be null.");
-            this.GetKeyAbilityScore = getKeyAbilityScore ?? throw new ArgumentNullException(nameof(getKeyAbilityScore), "Argument may not be null.");
+            this.SpellcastingStat = spellcastingStat ?? throw new ArgumentNullException(nameof(spellcastingStat), "Argument may not be null.");
         }
         #endregion
 
         #region Properties
-        private Func<IAbilityScore> GetKeyAbilityScore { get; }
-
         private Func<byte> ProficiencyBonus { get; }
+
+        private IAbilityScore SpellcastingStat { get; }
 
         private List<Func<sbyte>> Modifiers { get; } = new List<Func<sbyte>>();
 
+        /// <summary>
+        /// Gets or sets the total.
+        /// </summary>
         public sbyte Total
         {
             get => _totalAttackBonus.HasValue ? SpecifiedAttackBonus() : DefaultAttackBonus();
@@ -43,7 +51,7 @@ namespace DnD5e.Creatures.Attacks
         private sbyte DefaultAttackBonus()
         {
             sbyte runningTotal = Convert.ToSByte(this.ProficiencyBonus());
-            runningTotal += this.GetKeyAbilityScore().Modifer;
+            runningTotal += this.SpellcastingStat.Modifer;
             if (this.Modifiers.Any())
             {
                 runningTotal += Convert.ToSByte(this.Modifiers.Sum(mod => mod()));
@@ -63,6 +71,11 @@ namespace DnD5e.Creatures.Attacks
         }
 
 
+        /// <summary>
+        /// Adds a modifier to this attack bonus calculation.
+        /// </summary>
+        /// <param name="modifier">The modifier to add.</param>
+        /// <exception cref="System.ArgumentNullException" />
         public void AddModifier(Func<sbyte> modifier)
         {
             if (null == modifier)

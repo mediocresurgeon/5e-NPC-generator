@@ -5,6 +5,7 @@ using DnD5e.Creatures.AbilityScores;
 using DnD5e.Creatures.Attacks;
 using DnD5e.Creatures.Items;
 using DnD5e.Creatures.SavingThrows;
+using DnD5e.Creatures.Spellcasting;
 
 
 namespace DnD5e.Creatures
@@ -54,6 +55,11 @@ namespace DnD5e.Creatures
         /// Returns this creature's equipment.
         /// </summary>
         IEquipmentSection Equipment { get; }
+
+        /// <summary>
+        /// Returns this creature's spellcasting information.
+        /// </summary>
+        ISpellsAvailable SpellsAvailable { get; }
         #endregion
 
         #region Methods

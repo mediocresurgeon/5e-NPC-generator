@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace DnD5e.Creatures.Spells
+namespace DnD5e.Creatures.Spellcasting.Spells
 {
     /// <summary>
     /// A spell, such as Magic Missile or Fireball.

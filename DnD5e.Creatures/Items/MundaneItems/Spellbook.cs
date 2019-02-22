@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DnD5e.Creatures.Spells;
+using DnD5e.Creatures.Spellcasting.Spells;
 
 
 namespace DnD5e.Creatures.Items.MundaneItems

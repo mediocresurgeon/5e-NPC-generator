@@ -1,13 +1,13 @@
 ﻿using System;
 using DnD5e.Creatures.AbilityScores;
-using DnD5e.Creatures.Attacks;
+using DnD5e.Creatures.Spellcasting;
 using Moq;
 using Xunit;
 
 
-namespace DnD5e.Creatures.UnitTests.Attacks
+namespace DnD5e.Creatures.UnitTests.Spellcasting
 {
-    public class AttackBonusCalculatorTest
+    public class DifficultyClassCalculatorTest
     {
         #region Constructor
         [Fact]
@@ -15,10 +15,10 @@ namespace DnD5e.Creatures.UnitTests.Attacks
         {
             // Arrange
             Func<byte> proficiencyBonus = null;
-            Func<IAbilityScore> keyAbilityScore = () => Mock.Of<IAbilityScore>();
+            IAbilityScore spellcastingStat = Mock.Of<IAbilityScore>();
 
             // Act
-            Action constructor = () => new AttackBonusCalculator(proficiencyBonus, keyAbilityScore);
+            Action constructor = () => new DifficultyClassCalculator(proficiencyBonus, spellcastingStat);
 
             // Assert
             Assert.Throws<ArgumentNullException>(constructor);
@@ -26,14 +26,14 @@ namespace DnD5e.Creatures.UnitTests.Attacks
 
 
         [Fact]
-        public void Constructor_NullKeyAbilityScoreBonus_Throws()
+        public void Constructor_NullSpellcastingStatBonus_Throws()
         {
             // Arrange
             Func<byte> proficiencyBonus = () => 2;
-            Func<IAbilityScore> keyAbilityScore = null;
+            IAbilityScore spellcastingStat = null;
 
             // Act
-            Action constructor = () => new AttackBonusCalculator(proficiencyBonus, keyAbilityScore);
+            Action constructor = () => new DifficultyClassCalculator(proficiencyBonus, spellcastingStat);
 
             // Assert
             Assert.Throws<ArgumentNullException>(constructor);
@@ -42,10 +42,10 @@ namespace DnD5e.Creatures.UnitTests.Attacks
 
         #region Total
         [Theory]
-        [InlineData(0, 0, 0)]
-        [InlineData(1, 0, 1)]
-        [InlineData(0, 1, 1)]
-        [InlineData(4, 3, 7)]
+        [InlineData(0, 0,  8)]
+        [InlineData(1, 0,  9)]
+        [InlineData(0, 1,  9)]
+        [InlineData(4, 3, 15)]
         public void Total_WithoutMod_WithoutOverride(byte prof, sbyte ability, sbyte expected)
         {
             // Arrange
@@ -53,9 +53,8 @@ namespace DnD5e.Creatures.UnitTests.Attacks
             var mockAbilityScore = new Mock<IAbilityScore>();
             mockAbilityScore.SetupGet(ab => ab.Modifer)
                             .Returns(ability);
-            Func<IAbilityScore> keyAbilityScore = () => mockAbilityScore.Object;
 
-            var attackBonusCalc = new AttackBonusCalculator(proficiencyBonus, keyAbilityScore);
+            var attackBonusCalc = new DifficultyClassCalculator(proficiencyBonus, mockAbilityScore.Object);
 
             // Act
             var result = attackBonusCalc.Total;
@@ -66,10 +65,10 @@ namespace DnD5e.Creatures.UnitTests.Attacks
 
 
         [Theory]
-        [InlineData(0, 0, 1, 1)]
-        [InlineData(1, 0, 1, 2)]
-        [InlineData(0, 1, 1, 2)]
-        [InlineData(4, 3, 1, 8)]
+        [InlineData(0, 0, 1,  9)]
+        [InlineData(1, 0, 1, 10)]
+        [InlineData(0, 1, 1, 10)]
+        [InlineData(4, 3, 1, 16)]
         public void Total_WithMod_WithoutOverride(byte prof, sbyte ability, sbyte mod, sbyte expected)
         {
             // Arrange
@@ -77,9 +76,8 @@ namespace DnD5e.Creatures.UnitTests.Attacks
             var mockAbilityScore = new Mock<IAbilityScore>();
             mockAbilityScore.SetupGet(ab => ab.Modifer)
                             .Returns(ability);
-            Func<IAbilityScore> keyAbilityScore = () => mockAbilityScore.Object;
 
-            var attackBonusCalc = new AttackBonusCalculator(proficiencyBonus, keyAbilityScore);
+            var attackBonusCalc = new DifficultyClassCalculator(proficiencyBonus, mockAbilityScore.Object);
             attackBonusCalc.AddModifier(() => mod);
 
             // Act
@@ -91,10 +89,10 @@ namespace DnD5e.Creatures.UnitTests.Attacks
 
 
         [Theory]
-        [InlineData(0, 0, 0, 0)]
-        [InlineData(1, 0, 0, 0)]
-        [InlineData(0, 1, 0, 0)]
-        [InlineData(4, 3, 6, 6)]
+        [InlineData(0, 0, 13, 13)]
+        [InlineData(1, 0, 13, 13)]
+        [InlineData(0, 1, 13, 13)]
+        [InlineData(4, 3, 13, 13)]
         public void Total_WithoutMod_WithOverride(byte prof, sbyte ability, sbyte assignment, sbyte expected)
         {
             // Arrange
@@ -102,9 +100,8 @@ namespace DnD5e.Creatures.UnitTests.Attacks
             var mockAbilityScore = new Mock<IAbilityScore>();
             mockAbilityScore.SetupGet(ab => ab.Modifer)
                             .Returns(ability);
-            Func<IAbilityScore> keyAbilityScore = () => mockAbilityScore.Object;
 
-            var attackBonusCalc = new AttackBonusCalculator(proficiencyBonus, keyAbilityScore);
+            var attackBonusCalc = new DifficultyClassCalculator(proficiencyBonus, mockAbilityScore.Object);
             attackBonusCalc.Total = assignment;
 
             // Act
@@ -116,10 +113,10 @@ namespace DnD5e.Creatures.UnitTests.Attacks
 
 
         [Theory]
-        [InlineData(0, 0, 1, 0, 1)]
-        [InlineData(1, 0, 1, 0, 1)]
-        [InlineData(0, 1, 1, 0, 1)]
-        [InlineData(4, 3, 1, 6, 7)]
+        [InlineData(0, 0, 1, 14, 15)]
+        [InlineData(1, 0, 1, 14, 15)]
+        [InlineData(0, 1, 1, 14, 15)]
+        [InlineData(4, 3, 1, 14, 15)]
         public void Total_WithMod_WithOverride(byte prof, sbyte ability, sbyte mod, sbyte assignment, sbyte expected)
         {
             // Arrange
@@ -127,9 +124,8 @@ namespace DnD5e.Creatures.UnitTests.Attacks
             var mockAbilityScore = new Mock<IAbilityScore>();
             mockAbilityScore.SetupGet(ab => ab.Modifer)
                             .Returns(ability);
-            Func<IAbilityScore> keyAbilityScore = () => mockAbilityScore.Object;
 
-            var attackBonusCalc = new AttackBonusCalculator(proficiencyBonus, keyAbilityScore);
+            var attackBonusCalc = new DifficultyClassCalculator(proficiencyBonus, mockAbilityScore.Object);
             attackBonusCalc.Total = assignment;
             attackBonusCalc.AddModifier(() => mod);
 

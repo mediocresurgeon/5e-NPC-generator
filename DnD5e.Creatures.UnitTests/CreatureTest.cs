@@ -7,6 +7,7 @@ using DnD5e.Creatures.Attacks;
 using DnD5e.Creatures.Dice;
 using DnD5e.Creatures.Items;
 using DnD5e.Creatures.SavingThrows;
+using DnD5e.Creatures.Spellcasting;
 using Moq;
 using Xunit;
 
@@ -118,6 +119,19 @@ namespace DnD5e.Creatures.UnitTests
 
             // Assert
             Assert.IsType<EquipmentSection>(character.Equipment);
+        }
+
+
+        [Fact]
+        public void Constructor_SpellsAvailable_IsNotNull()
+        {
+            // Arrange
+            var character = new Creature();
+
+            // Act
+
+            // Assert
+            Assert.IsType<SpellsAvailable>(character.SpellsAvailable);
         }
         #endregion
 

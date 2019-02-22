@@ -1,4 +1,4 @@
-﻿namespace DnD5e.Creatures.Spells
+﻿namespace DnD5e.Creatures.Spellcasting.Spells
 {
     /// <summary>
     /// The amount of time it takes to cast a spell.

@@ -23,6 +23,28 @@ namespace DnD5e.Creatures.Items
         /// <param name="armor">The armor to equip.</param>
         void Equip(IArmor armor);
 
+        /// <summary>
+        /// Returns this creature's manufactured weapons.
+        /// </summary>
+        IManufacturedWeapon[] GetWeapons();
+
+        /// <summary>
+        /// Equips a manufacturered weapon and registers it as an attack.
+        /// </summary>
+        /// <param name="weapon">The weapon to equip.</param>
+        void Equip(IManufacturedWeapon weapon);
+
+        /// <summary>
+        /// Returns the equipped spellbook.
+        /// May be null.
+        /// </summary>
+        ISpellbook Spellbook { get; }
+
+        /// <summary>
+        /// Equips a spellbook to this creature.
+        /// </summary>
+        /// <param name="spellbook">The spellbook to equip.</param>
+        void Equip(ISpellbook spellbook);
 
         /// <summary>
         /// Returns this creature's wonderous items.
@@ -34,17 +56,5 @@ namespace DnD5e.Creatures.Items
         /// </summary>
         /// <param name="wonderousItem">The wonderous item to equip.</param>
         void Equip(IWonderousItem wonderousItem);
-
-
-        /// <summary>
-        /// Returns this creature's manufactured weapons.
-        /// </summary>
-        IManufacturedWeapon[] GetWeapons();
-
-        /// <summary>
-        /// Equips a manufacturered weapon and registers it as an attack.
-        /// </summary>
-        /// <param name="weapon">The weapon to equip.</param>
-        void Equip(IManufacturedWeapon weapon);
     }
 }

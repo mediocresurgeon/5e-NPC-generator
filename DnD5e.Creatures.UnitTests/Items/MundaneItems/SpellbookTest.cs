@@ -1,6 +1,6 @@
 ﻿using System;
 using DnD5e.Creatures.Items.MundaneItems;
-using DnD5e.Creatures.Spells;
+using DnD5e.Creatures.Spellcasting.Spells;
 using Moq;
 using Xunit;
 
