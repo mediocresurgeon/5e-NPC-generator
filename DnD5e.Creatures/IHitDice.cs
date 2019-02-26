@@ -25,6 +25,11 @@ namespace DnD5e.Creatures
         byte HitDiceCount { get; }
 
         /// <summary>
+        /// Gets or sets the creature's level.
+        /// </summary>
+        byte Level { get; set; }
+
+        /// <summary>
         /// The minimum hit points.
         /// </summary>
         ushort Min { get; }

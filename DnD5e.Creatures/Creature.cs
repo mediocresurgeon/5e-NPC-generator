@@ -27,7 +27,7 @@ namespace DnD5e.Creatures
             this.HitPoints = new HitDice(this.AbilityScores.Constitution);
             this.Initiative = new AbilityCheck(this.AbilityScores.Dexterity);
 
-            this.GetProficiencyBonus = () => GetProficiencyBonusFromLevel(this.HitPoints.HitDiceCount);
+            this.GetProficiencyBonus = () => GetProficiencyBonusFromLevel(this.HitPoints.Level);
             this.SavingThrows = new SavingThrowsSection(this.AbilityScores, () => this.GetProficiencyBonus());
             this.Skills = new SkillsSection(this.AbilityScores, () => this.GetProficiencyBonus());
 
@@ -83,9 +83,14 @@ namespace DnD5e.Creatures
         public IEquipmentSection Equipment { get; }
 
         /// <summary>
-        /// Returns this creature's spellcasting information.
+        /// Returns this creature's castable spells.
         /// </summary>
         public ISpellsAvailable SpellsAvailable { get; }
+
+        /// <summary>
+        /// Returns this creature's available spell slots.
+        /// </summary>
+        public ISpellSlots SpellSlots { get; } = new SpellSlots(() => 0);
         #endregion
 
         #region Methods

@@ -58,7 +58,7 @@ namespace DnD5e.Creatures.UnitTests
 
         #region HitDiceCount
         [Theory]
-        [InlineData(1, 6, 1)]
+        [InlineData( 1,  6,  1)]
         [InlineData(20, 10, 20)]
         public void HitDiceCount_SingleBatch(byte hdCount, byte hdType, byte expected)
         {

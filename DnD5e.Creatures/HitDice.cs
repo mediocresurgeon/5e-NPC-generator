@@ -10,6 +10,10 @@ namespace DnD5e.Creatures
 {
     internal sealed class HitDice : IHitDice
     {
+        #region Fields
+        private byte? _level;
+        #endregion
+
         #region Constructor
         /// <summary>
         /// Initializes a new instance of the <see cref="T:DnD5e.Creatures.HitDice"/> class.
@@ -31,6 +35,12 @@ namespace DnD5e.Creatures
         private List<Func<sbyte>> BonusHitPoints { get; } = new List<Func<sbyte>>();
 
         public byte HitDiceCount => this.Dice.Count;
+
+        public byte Level
+        {
+            get => _level.HasValue ? _level.Value : this.HitDiceCount;
+            set => _level = value;
+        }
 
         public ushort Min
         {

@@ -133,6 +133,19 @@ namespace DnD5e.Creatures.UnitTests
             // Assert
             Assert.IsType<SpellsAvailable>(character.SpellsAvailable);
         }
+
+
+        [Fact]
+        public void Constructor_SpellSlots_IsNotNull()
+        {
+            // Arrange
+            var character = new Creature();
+
+            // Act
+
+            // Assert
+            Assert.IsType<SpellSlots>(character.SpellSlots);
+        }
         #endregion
 
         #region Proficiency bonus

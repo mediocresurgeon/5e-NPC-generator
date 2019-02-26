@@ -57,9 +57,14 @@ namespace DnD5e.Creatures
         IEquipmentSection Equipment { get; }
 
         /// <summary>
-        /// Returns this creature's spellcasting information.
+        /// Returns this creature's castable spells.
         /// </summary>
         ISpellsAvailable SpellsAvailable { get; }
+
+        /// <summary>
+        /// Returns this creature's available spell slots.
+        /// </summary>
+        ISpellSlots SpellSlots { get; }
         #endregion
 
         #region Methods
